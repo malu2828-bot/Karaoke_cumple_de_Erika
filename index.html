@@ -140,15 +140,11 @@
         // Se deja listo el espacio del reproductor
     }
 
-function extraerId(url) {
-    // Expresión regular mejorada para limpiar parámetros extras como ?si= o &feature
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    if (match && match[2].length === 11) {
-        return match[2];
+    function extraerId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match.length === 21 || match[2].length === 11) ? match[2] : null;
     }
-    return null;
-}
 
     function procesarVideo() {
         const url = document.getElementById('youtubeUrl').value;
